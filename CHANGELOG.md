@@ -1,3 +1,7 @@
+## 0.3.0 - [09-Aug-2021]
+
+* Add Theme type auto detect mode.
+
 ## 0.2.0 - [09-Aug-2021]
 
 * Switch b/w light and dark variants of buttons automatically.
