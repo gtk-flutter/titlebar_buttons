@@ -1,3 +1,7 @@
+## 0.3.0+1 - [09-Aug-2021]
+
+* Dispose Settings after used.
+
 ## 0.3.0 - [09-Aug-2021]
 
 * Add Theme type auto detect mode.

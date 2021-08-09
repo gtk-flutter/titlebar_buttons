@@ -147,12 +147,17 @@ class _RawDecoratedWindowButtonState extends State<RawDecoratedWindowButton> {
   bool isActive = false;
   @override
   Widget build(BuildContext context) {
-    final settings = GSettings(schemaId: 'org.gnome.desktop.interface');
-    final theme = settings.stringValue('gtk-theme');
+    GSettings? settings;
+    String? theme;
+    if (widget.type == ThemeType.auto) {
+      settings = GSettings(schemaId: 'org.gnome.desktop.interface');
+      theme = settings.stringValue('gtk-theme');
+      settings.dispose();
+    }
     final type = widget.type != ThemeType.auto
         ? widget.type
         : ThemeType.values.firstWhere(
-            (element) => theme.toLowerCase().replaceAll('-', ' ').contains(
+            (element) => theme!.toLowerCase().replaceAll('-', ' ').contains(
                   describeEnum(element).replaceAll('_', ' '),
                 ),
             orElse: () => ThemeType.adwaita);
