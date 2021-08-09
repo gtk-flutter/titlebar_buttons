@@ -1,6 +1,6 @@
 name: window_decorations
 description: A package which provides most of the window decorations from linux themes.
-version: 0.1.0+1
+version: 0.2.0
 homepage: https://github.com/prateekmedia/window_decorations
 
 environment:
@@ -19,7 +19,7 @@ dev_dependencies:
 
 flutter:
   assets:
-    - assets/themes/adwaita-dark/
+    - assets/themes/adwaita/
     - assets/themes/ambiance/
     - assets/themes/arc-dark/
     - assets/themes/arc-light/

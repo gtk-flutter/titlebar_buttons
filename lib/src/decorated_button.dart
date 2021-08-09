@@ -4,7 +4,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:window_decorations/src/theme_type.dart';
 
 class DecoratedMinimizeButton extends StatelessWidget {
+  /// Specify the type of theme you want to be
+  /// used for the window decorations
   final ThemeType type;
+
+  /// Specify a nullable onPressed callback
+  /// used when this button is pressed
   final VoidCallback? onPressed;
 
   const DecoratedMinimizeButton({
@@ -24,7 +29,12 @@ class DecoratedMinimizeButton extends StatelessWidget {
 }
 
 class DecoratedMaximizeButton extends StatelessWidget {
+  /// Specify the type of theme you want to be
+  /// used for the window decorations
   final ThemeType type;
+
+  /// Specify a nullable onPressed callback
+  /// used when this button is pressed
   final VoidCallback? onPressed;
 
   const DecoratedMaximizeButton({
@@ -44,7 +54,12 @@ class DecoratedMaximizeButton extends StatelessWidget {
 }
 
 class DecoratedCloseButton extends StatelessWidget {
+  /// Specify the type of theme you want to be
+  /// used for the window decorations
   final ThemeType type;
+
+  /// Specify a nullable onPressed callback
+  /// used when this button is pressed
   final VoidCallback? onPressed;
 
   const DecoratedCloseButton({
@@ -71,8 +86,16 @@ class RawDecoratedWindowButton extends StatefulWidget {
     required this.onPressed,
   }) : super(key: key);
 
+  /// Specify the type of theme you want to be
+  /// used for the window decorations
   final ThemeType type;
+
+  /// Specify the name of the button that
+  /// you are trying to create
   final String name;
+
+  /// Specify a nullable onPressed callback
+  /// used when this button is pressed
   final VoidCallback? onPressed;
 
   @override
@@ -107,12 +130,15 @@ class _RawDecoratedWindowButtonState extends State<RawDecoratedWindowButton> {
           padding: const EdgeInsets.all(4),
           constraints: const BoxConstraints(minWidth: 15),
           child: SvgPicture.asset(
-            'packages/window_decorations/assets/themes/${describeEnum(widget.type).replaceAll('_', '-')}/${widget.name}${isActive ? '-active' : isHovering ? '-hover' : ''}.svg',
+            'packages/window_decorations/assets/themes/${describeEnum(widget.type).replaceAll('_', '-')}${widget.type == ThemeType.pop || widget.type == ThemeType.arc || widget.type == ThemeType.materia || widget.type == ThemeType.united || widget.type == ThemeType.unity ? Theme.of(context).brightness == Brightness.dark ? '-dark' : '-light' : ''}/${widget.name}${isActive ? '-active' : isHovering ? '-hover' : ''}.svg',
             color: (!isHovering &&
                         !isActive &&
                         widget.type == ThemeType.yaru &&
                         widget.name != 'close' ||
-                    widget.type == ThemeType.breeze)
+                    widget.type == ThemeType.breeze ||
+                    !isHovering &&
+                        !isActive &&
+                        widget.type == ThemeType.adwaita)
                 ? Theme.of(context).brightness == Brightness.dark
                     ? Colors.white
                     : Colors.black
