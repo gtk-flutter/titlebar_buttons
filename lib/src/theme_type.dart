@@ -1,5 +1,6 @@
 enum ThemeType {
   adwaita,
+  auto,
   ambiance,
   arc,
   breeze,

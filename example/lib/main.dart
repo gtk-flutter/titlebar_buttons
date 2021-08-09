@@ -55,7 +55,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  ThemeType _currentThemeType = ThemeType.yaru;
+  ThemeType _currentThemeType = ThemeType.auto;
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
             type: _currentThemeType,
             onPressed: () {},
           ),
+          const SizedBox(width: 5),
         ],
       ),
       body: Center(

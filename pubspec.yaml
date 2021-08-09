@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^0.22.0
+  gsettings: ">=0.1.2+1 <1.0.0"
 
 dev_dependencies:
   flutter_test:
