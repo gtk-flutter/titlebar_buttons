@@ -1,8 +1,13 @@
+## 0.4.0 - [21-Aug-2021]
+
+* Changed cursor back to normal position
+* Format decorated button file
+
 ## 0.3.0+1 - [09-Aug-2021]
 
 * Dispose Settings after used.
 
-## 0.3.0 - [09-Aug-2021]
+## 0.2.3 - [09-Aug-2021]
 
 * Add Theme type auto detect mode.
 

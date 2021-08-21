@@ -65,15 +65,15 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           DecoratedMinimizeButton(
             type: _currentThemeType,
-            onPressed: () {},
+            onPressed: () => debugPrint("Minimize Window"),
           ),
           DecoratedMaximizeButton(
             type: _currentThemeType,
-            onPressed: () {},
+            onPressed: () => debugPrint("Maximize Window"),
           ),
           DecoratedCloseButton(
             type: _currentThemeType,
-            onPressed: () {},
+            onPressed: () => debugPrint("Close Window"),
           ),
           const SizedBox(width: 5),
         ],

@@ -175,15 +175,31 @@ class _RawDecoratedWindowButtonState extends State<RawDecoratedWindowButton> {
       child: GestureDetector(
         onTapDown: (_) => onActive(true),
         onTapCancel: () => onActive(false),
-        child: RawMaterialButton(
-          shape: const CircleBorder(),
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
+        onTapUp: (_) => onActive(false),
+        onTap: widget.onPressed,
+        child: Container(
           padding: const EdgeInsets.all(4),
           constraints: const BoxConstraints(minWidth: 15),
           child: SvgPicture.asset(
-            'packages/window_decorations/assets/themes/${describeEnum(type).replaceAll('_', '-')}${type == ThemeType.pop || type == ThemeType.arc || type == ThemeType.materia || type == ThemeType.united || type == ThemeType.unity ? Theme.of(context).brightness == Brightness.dark ? '-dark' : '-light' : ''}/${widget.name}${isActive ? '-active' : isHovering ? '-hover' : ''}.svg',
+            'packages/window_decorations/assets/themes/' +
+                describeEnum(type).replaceAll('_', '-') +
+                (type == ThemeType.pop ||
+                        type == ThemeType.arc ||
+                        type == ThemeType.materia ||
+                        type == ThemeType.united ||
+                        type == ThemeType.unity
+                    ? Theme.of(context).brightness == Brightness.dark
+                        ? '-dark'
+                        : '-light'
+                    : '') +
+                '/' +
+                widget.name +
+                (isActive
+                    ? '-active'
+                    : isHovering
+                        ? '-hover'
+                        : '') +
+                '.svg',
             width: widget.width,
             height: widget.height,
             color: (!isHovering &&
@@ -197,7 +213,6 @@ class _RawDecoratedWindowButtonState extends State<RawDecoratedWindowButton> {
                     : Colors.black
                 : null,
           ),
-          onPressed: widget.onPressed,
         ),
       ),
     );
