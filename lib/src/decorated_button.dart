@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:dbus/dbus.dart';
 import 'package:gsettings/gsettings.dart';
 import 'package:window_decorations/src/theme_type.dart';
 
@@ -145,19 +146,25 @@ class RawDecoratedWindowButton extends StatefulWidget {
 class _RawDecoratedWindowButtonState extends State<RawDecoratedWindowButton> {
   bool isHovering = false;
   bool isActive = false;
+  late String theme = '';
+
+  void getTheme() async {
+    GSettings settings = GSettings('org.gnome.desktop.interface');
+    theme = ((await settings.get('gtk-theme')) as DBusString).value;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getTheme();
+  }
+
   @override
   Widget build(BuildContext context) {
-    GSettings? settings;
-    String? theme;
-    if (widget.type == ThemeType.auto) {
-      settings = GSettings(schemaId: 'org.gnome.desktop.interface');
-      theme = settings.stringValue('gtk-theme');
-      settings.dispose();
-    }
     final type = widget.type != ThemeType.auto
         ? widget.type
         : ThemeType.values.firstWhere(
-            (element) => theme!.toLowerCase().replaceAll('-', ' ').contains(
+            (element) => (theme).toLowerCase().replaceAll('-', ' ').contains(
                   describeEnum(element).replaceAll('_', ' '),
                 ),
             orElse: () => ThemeType.adwaita);
