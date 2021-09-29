@@ -1,3 +1,7 @@
+## 0.9.5
+
+- Fix when `themeType` is not supplied
+
 ## 0.9.2
 
 - Add windowDecor object to simplify usage with `gtk` package

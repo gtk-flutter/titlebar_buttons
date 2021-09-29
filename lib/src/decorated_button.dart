@@ -167,8 +167,8 @@ class _RawDecoratedWindowButtonState extends State<RawDecoratedWindowButton> {
 
   @override
   Widget build(BuildContext context) {
-    final type = widget.type != ThemeType.auto
-        ? widget.type
+    final ThemeType type = widget.type != null && widget.type != ThemeType.auto
+        ? widget.type!
         : ThemeType.values.firstWhere(
             (element) => (theme).toLowerCase().replaceAll('-', ' ').contains(
                   describeEnum(element).replaceAll('_', ' '),
@@ -195,7 +195,7 @@ class _RawDecoratedWindowButtonState extends State<RawDecoratedWindowButton> {
           constraints: const BoxConstraints(minWidth: 15),
           child: SvgPicture.asset(
             'packages/window_decorations/assets/themes/' +
-                describeEnum(type ?? ThemeType.auto).replaceAll('_', '-') +
+                describeEnum(type).replaceAll('_', '-') +
                 (type == ThemeType.pop ||
                         type == ThemeType.arc ||
                         type == ThemeType.materia ||
