@@ -1,3 +1,7 @@
+## 0.9.2
+
+- Add windowDecor object to simplify usage with `gtk` package
+
 ## 0.9.1
 
 - Made `type` property nullable for buttons

@@ -5,6 +5,12 @@ import 'package:dbus/dbus.dart';
 import 'package:gsettings/gsettings.dart';
 import 'package:window_decorations/src/theme_type.dart';
 
+Widget windowDecor(name, type, onPressed) => RawDecoratedWindowButton(
+      name: name,
+      type: type,
+      onPressed: onPressed,
+    );
+
 class DecoratedMinimizeButton extends StatelessWidget {
   /// Specify the type of theme you want to be
   /// used for the window decorations
@@ -139,7 +145,8 @@ class RawDecoratedWindowButton extends StatefulWidget {
   final double? height;
 
   @override
-  State<RawDecoratedWindowButton> createState() => _RawDecoratedWindowButtonState();
+  State<RawDecoratedWindowButton> createState() =>
+      _RawDecoratedWindowButtonState();
 }
 
 class _RawDecoratedWindowButtonState extends State<RawDecoratedWindowButton> {
@@ -208,7 +215,10 @@ class _RawDecoratedWindowButtonState extends State<RawDecoratedWindowButton> {
                 '.svg',
             width: widget.width,
             height: widget.height,
-            color: (!isHovering && !isActive && type == ThemeType.yaru && widget.name != 'close' ||
+            color: (!isHovering &&
+                        !isActive &&
+                        type == ThemeType.yaru &&
+                        widget.name != 'close' ||
                     type == ThemeType.breeze ||
                     !isHovering && !isActive && type == ThemeType.adwaita)
                 ? Theme.of(context).brightness == Brightness.dark

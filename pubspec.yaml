@@ -1,6 +1,6 @@
 name: window_decorations
 description: A package which provides most of the window decorations from linux themes.
-version: 0.9.1
+version: 0.9.2
 homepage: https://github.com/prateekmedia/window_decorations
 
 environment:
