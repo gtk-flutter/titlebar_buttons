@@ -1,5 +1,9 @@
 ## 0.9.0
 
+- Made `type` property nullable for buttons
+
+## 0.9.0
+
 - Update gsettings
 
 ## 0.5.5

@@ -8,7 +8,7 @@ import 'package:window_decorations/src/theme_type.dart';
 class DecoratedMinimizeButton extends StatelessWidget {
   /// Specify the type of theme you want to be
   /// used for the window decorations
-  final ThemeType type;
+  final ThemeType? type;
 
   /// Specify a nullable onPressed callback
   /// used when this button is pressed
@@ -43,7 +43,7 @@ class DecoratedMinimizeButton extends StatelessWidget {
 class DecoratedMaximizeButton extends StatelessWidget {
   /// Specify the type of theme you want to be
   /// used for the window decorations
-  final ThemeType type;
+  final ThemeType? type;
 
   /// Specify a nullable onPressed callback
   /// used when this button is pressed
@@ -78,7 +78,7 @@ class DecoratedMaximizeButton extends StatelessWidget {
 class DecoratedCloseButton extends StatelessWidget {
   /// Specify the type of theme you want to be
   /// used for the window decorations
-  final ThemeType type;
+  final ThemeType? type;
 
   /// Specify a nullable onPressed callback
   /// used when this button is pressed
@@ -122,7 +122,7 @@ class RawDecoratedWindowButton extends StatefulWidget {
 
   /// Specify the type of theme you want to be
   /// used for the window decorations
-  final ThemeType type;
+  final ThemeType? type;
 
   /// Specify the name of the button that
   /// you are trying to create
@@ -139,8 +139,7 @@ class RawDecoratedWindowButton extends StatefulWidget {
   final double? height;
 
   @override
-  State<RawDecoratedWindowButton> createState() =>
-      _RawDecoratedWindowButtonState();
+  State<RawDecoratedWindowButton> createState() => _RawDecoratedWindowButtonState();
 }
 
 class _RawDecoratedWindowButtonState extends State<RawDecoratedWindowButton> {
@@ -189,7 +188,7 @@ class _RawDecoratedWindowButtonState extends State<RawDecoratedWindowButton> {
           constraints: const BoxConstraints(minWidth: 15),
           child: SvgPicture.asset(
             'packages/window_decorations/assets/themes/' +
-                describeEnum(type).replaceAll('_', '-') +
+                describeEnum(type ?? ThemeType.auto).replaceAll('_', '-') +
                 (type == ThemeType.pop ||
                         type == ThemeType.arc ||
                         type == ThemeType.materia ||
@@ -209,10 +208,7 @@ class _RawDecoratedWindowButtonState extends State<RawDecoratedWindowButton> {
                 '.svg',
             width: widget.width,
             height: widget.height,
-            color: (!isHovering &&
-                        !isActive &&
-                        type == ThemeType.yaru &&
-                        widget.name != 'close' ||
+            color: (!isHovering && !isActive && type == ThemeType.yaru && widget.name != 'close' ||
                     type == ThemeType.breeze ||
                     !isHovering && !isActive && type == ThemeType.adwaita)
                 ? Theme.of(context).brightness == Brightness.dark
