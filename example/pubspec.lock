@@ -96,7 +96,7 @@ packages:
       name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.22.0"
+    version: "0.23.0+1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -246,7 +246,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.9.5"
+    version: "0.9.8"
   xdg_directories:
     dependency: transitive
     description:

@@ -1,3 +1,7 @@
+## 0.9.8
+
+- Bump flutter_svg version
+
 ## 0.9.5
 
 - Fix when `themeType` is not supplied
