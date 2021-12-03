@@ -174,6 +174,32 @@ class _RawDecoratedWindowButtonState extends State<RawDecoratedWindowButton> {
                   describeEnum(element).replaceAll('_', ' '),
                 ),
             orElse: () => ThemeType.adwaita);
+
+    final String themeName = describeEnum(type).replaceAll('_', '-');
+    final String themeColor = (type == ThemeType.pop ||
+            type == ThemeType.arc ||
+            type == ThemeType.materia ||
+            type == ThemeType.united ||
+            type == ThemeType.unity
+        ? Theme.of(context).brightness == Brightness.dark
+            ? '-dark'
+            : '-light'
+        : '');
+
+    String fileName = widget.name +
+        (isActive
+            ? '-active'
+            : isHovering
+                ? '-hover'
+                : '') +
+        '.svg';
+
+    String themePath = 'packages/window_decorations/assets/themes/' +
+        themeName +
+        themeColor +
+        '/' +
+        fileName;
+
     onEntered(bool hover) => setState(() {
           isHovering = hover;
         });
@@ -194,25 +220,7 @@ class _RawDecoratedWindowButtonState extends State<RawDecoratedWindowButton> {
           padding: const EdgeInsets.all(4),
           constraints: const BoxConstraints(minWidth: 15),
           child: SvgPicture.asset(
-            'packages/window_decorations/assets/themes/' +
-                describeEnum(type).replaceAll('_', '-') +
-                (type == ThemeType.pop ||
-                        type == ThemeType.arc ||
-                        type == ThemeType.materia ||
-                        type == ThemeType.united ||
-                        type == ThemeType.unity
-                    ? Theme.of(context).brightness == Brightness.dark
-                        ? '-dark'
-                        : '-light'
-                    : '') +
-                '/' +
-                widget.name +
-                (isActive
-                    ? '-active'
-                    : isHovering
-                        ? '-hover'
-                        : '') +
-                '.svg',
+            themePath,
             width: widget.width,
             height: widget.height,
             color: (!isHovering &&
