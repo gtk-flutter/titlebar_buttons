@@ -1,3 +1,8 @@
+## 1.0.0
+
+- Bump flutter_svg version
+- Update Pop os buttons
+
 ## 0.9.8
 
 - Bump flutter_svg version
