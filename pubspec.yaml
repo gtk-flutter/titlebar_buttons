@@ -8,7 +8,7 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  change_case: ^1.0.1
+  change_case: ">=1.0.1 < 2.0.0"
   dbus: ">=0.7.1 <1.0.0"
   flutter:
     sdk: flutter
@@ -18,7 +18,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: ^2.4.0
+  very_good_analysis: ">=2.4.0 <3.0.0"
 
 flutter:
   assets:
