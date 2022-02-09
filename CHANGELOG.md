@@ -1,4 +1,9 @@
-## 1.0.0
+## 2.0.0
+
+- Remove old svg's
+- Support all platforms
+
+- ## 1.0.0
 
 - Bump flutter_svg version
 - Update Pop os buttons

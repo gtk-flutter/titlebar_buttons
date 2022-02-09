@@ -1,6 +1,6 @@
 name: window_decorations
 description: A package which provides most of the window decorations from linux themes.
-version: 1.0.0
+version: 2.0.0
 homepage: https://github.com/prateekmedia/window_decorations
 
 environment:
@@ -8,21 +8,22 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  change_case: ^1.0.1
+  dbus: ">=0.7.1 <1.0.0"
   flutter:
     sdk: flutter
-  dbus: ">=0.6.6 <1.0.0"
   flutter_svg: ">=1.0.0 <2.0.0"
-  gsettings: ">=0.2.1 <1.0.0"
+  gsettings: ">=0.2.5 <1.0.0"
+  very_good_performance: ^0.0.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
+  very_good_analysis: ^2.4.0
 
 flutter:
   assets:
     - assets/themes/adwaita/
-    - assets/themes/ambiance/
     - assets/themes/arc-dark/
     - assets/themes/arc-light/
     - assets/themes/breeze/
@@ -33,13 +34,7 @@ flutter:
     - assets/themes/osx-arc/
     - assets/themes/pop-dark/
     - assets/themes/pop-light/
-    - assets/themes/prof-gnome/
-    - assets/themes/radiance/
-    - assets/themes/telinkrin/
-    - assets/themes/united-dark/
-    - assets/themes/united-light/
     - assets/themes/unity-dark/
     - assets/themes/unity-light/
-    - assets/themes/vertex/
     - assets/themes/vimix/
     - assets/themes/yaru/

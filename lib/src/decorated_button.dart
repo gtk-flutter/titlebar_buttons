@@ -1,17 +1,26 @@
+import 'package:change_case/change_case.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:dbus/dbus.dart';
-import 'package:gsettings/gsettings.dart';
+import 'package:window_decorations/src/get_theme.dart';
 import 'package:window_decorations/src/theme_type.dart';
 
-Widget windowDecor(name, type, onPressed) => RawDecoratedWindowButton(
+Widget windowDecor(String name, ThemeType? type, void Function()? onPressed) =>
+    RawDecoratedWindowButton(
       name: name,
       type: type,
       onPressed: onPressed,
     );
 
 class DecoratedMinimizeButton extends StatelessWidget {
+  const DecoratedMinimizeButton({
+    Key? key,
+    this.type = ThemeType.auto,
+    required this.onPressed,
+    this.width,
+    this.height,
+  }) : super(key: key);
+
   /// Specify the type of theme you want to be
   /// used for the window decorations
   final ThemeType? type;
@@ -25,14 +34,6 @@ class DecoratedMinimizeButton extends StatelessWidget {
 
   /// Height of the Button
   final double? height;
-
-  const DecoratedMinimizeButton({
-    Key? key,
-    this.type = ThemeType.auto,
-    required this.onPressed,
-    this.width,
-    this.height,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +48,14 @@ class DecoratedMinimizeButton extends StatelessWidget {
 }
 
 class DecoratedMaximizeButton extends StatelessWidget {
+  const DecoratedMaximizeButton({
+    Key? key,
+    this.type = ThemeType.auto,
+    required this.onPressed,
+    this.width,
+    this.height,
+  }) : super(key: key);
+
   /// Specify the type of theme you want to be
   /// used for the window decorations
   final ThemeType? type;
@@ -60,14 +69,6 @@ class DecoratedMaximizeButton extends StatelessWidget {
 
   /// Height of the Button
   final double? height;
-
-  const DecoratedMaximizeButton({
-    Key? key,
-    this.type = ThemeType.auto,
-    required this.onPressed,
-    this.width,
-    this.height,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +83,14 @@ class DecoratedMaximizeButton extends StatelessWidget {
 }
 
 class DecoratedCloseButton extends StatelessWidget {
+  const DecoratedCloseButton({
+    Key? key,
+    this.type = ThemeType.auto,
+    required this.onPressed,
+    this.width,
+    this.height,
+  }) : super(key: key);
+
   /// Specify the type of theme you want to be
   /// used for the window decorations
   final ThemeType? type;
@@ -95,14 +104,6 @@ class DecoratedCloseButton extends StatelessWidget {
 
   /// Height of the Button
   final double? height;
-
-  const DecoratedCloseButton({
-    Key? key,
-    this.type = ThemeType.auto,
-    required this.onPressed,
-    this.width,
-    this.height,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -154,67 +155,59 @@ class _RawDecoratedWindowButtonState extends State<RawDecoratedWindowButton> {
   bool isActive = false;
   late String theme = '';
 
-  void getTheme() async {
-    GSettings settings = GSettings('org.gnome.desktop.interface');
-    theme = ((await settings.get('gtk-theme')) as DBusString).value;
-  }
-
   @override
   void initState() {
     super.initState();
-    getTheme();
+    getTheme().then((value) => setState(() => theme = value));
   }
 
   @override
   Widget build(BuildContext context) {
-    final ThemeType type = widget.type != null && widget.type != ThemeType.auto
+    final type = widget.type != null && widget.type != ThemeType.auto
         ? widget.type!
         : ThemeType.values.firstWhere(
-            (element) => (theme).toLowerCase().replaceAll('-', ' ').contains(
-                  describeEnum(element).replaceAll('_', ' '),
+            (element) => theme.toParamCase().contains(
+                  describeEnum(element).toParamCase(),
                 ),
-            orElse: () => ThemeType.adwaita);
+            orElse: () => ThemeType.adwaita,
+          );
 
-    final String themeName = describeEnum(type).replaceAll('_', '-');
-    final String themeColor = (type == ThemeType.pop ||
+    final themeName = describeEnum(type).toParamCase();
+    final themeColor = type == ThemeType.pop ||
             type == ThemeType.arc ||
             type == ThemeType.materia ||
-            type == ThemeType.united ||
             type == ThemeType.unity
         ? Theme.of(context).brightness == Brightness.dark
             ? '-dark'
             : '-light'
-        : '');
+        : '';
 
-    String fileName = widget.name +
-        (isActive
-            ? '-active'
-            : isHovering
-                ? '-hover'
-                : '') +
-        '.svg';
+    final state = isActive
+        ? '-active'
+        : isHovering
+            ? '-hover'
+            : '';
 
-    String themePath = 'packages/window_decorations/assets/themes/' +
-        themeName +
-        themeColor +
-        '/' +
-        fileName;
+    final fileName = '${widget.name}$state.svg';
 
-    onEntered(bool hover) => setState(() {
+    final themePath =
+        'packages/window_decorations/assets/themes/$themeName$themeColor/$fileName';
+
+    void onEntered({required bool hover}) => setState(() {
           isHovering = hover;
         });
 
-    onActive(bool hover) => setState(() {
+    void onActive({required bool hover}) => setState(() {
           isActive = hover;
         });
 
     return MouseRegion(
-      onExit: (value) => onEntered(false),
-      onHover: (value) => onEntered(true),
+      onExit: (value) => onEntered(hover: false),
+      onHover: (value) => onEntered(hover: true),
       child: GestureDetector(
-        onTapDown: (_) => onActive(true),
-        onTapCancel: () => onActive(false),
-        onTapUp: (_) => onActive(false),
+        onTapDown: (_) => onActive(hover: true),
+        onTapCancel: () => onActive(hover: false),
+        onTapUp: (_) => onActive(hover: false),
         onTap: widget.onPressed,
         child: Container(
           padding: const EdgeInsets.all(4),

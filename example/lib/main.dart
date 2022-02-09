@@ -1,3 +1,4 @@
+import 'package:change_case/change_case.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:window_decorations/window_decorations.dart';
@@ -13,42 +14,43 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeMode = ValueNotifier<ThemeMode>(ThemeMode.system);
     return ValueListenableBuilder<ThemeMode>(
-        valueListenable: themeMode,
-        builder: (_, thMode, __) {
-          return MaterialApp(
-            title: 'Window Decoration Demo',
-            theme: ThemeData(
-              primarySwatch: MaterialColor(
-                Colors.grey[50]!.value,
-                <int, Color>{
-                  50: Colors.grey[50]!,
-                  100: Colors.grey[50]!,
-                  200: Colors.grey[50]!,
-                  300: Colors.grey[50]!,
-                  400: Colors.grey[50]!,
-                  500: Colors.grey[50]!,
-                  600: Colors.grey[50]!,
-                  700: Colors.grey[50]!,
-                  800: Colors.grey[50]!,
-                  900: Colors.grey[50]!,
-                },
-              ),
-              primaryColor: Colors.grey[200],
+      valueListenable: themeMode,
+      builder: (_, thMode, __) {
+        return MaterialApp(
+          title: 'Window Decoration Demo',
+          theme: ThemeData(
+            primarySwatch: MaterialColor(
+              Colors.grey[50]!.value,
+              <int, Color>{
+                50: Colors.grey[50]!,
+                100: Colors.grey[50]!,
+                200: Colors.grey[50]!,
+                300: Colors.grey[50]!,
+                400: Colors.grey[50]!,
+                500: Colors.grey[50]!,
+                600: Colors.grey[50]!,
+                700: Colors.grey[50]!,
+                800: Colors.grey[50]!,
+                900: Colors.grey[50]!,
+              },
             ),
-            darkTheme: ThemeData.dark(),
-            themeMode: ThemeMode.values
-                .firstWhere((element) => element.index == thMode.index),
-            debugShowCheckedModeBanner: false,
-            home: MyHomePage(themeMode: themeMode),
-          );
-        });
+            primaryColor: Colors.grey[200],
+          ),
+          darkTheme: ThemeData.dark(),
+          themeMode: ThemeMode.values
+              .firstWhere((element) => element.index == thMode.index),
+          debugShowCheckedModeBanner: false,
+          home: MyHomePage(themeMode: themeMode),
+        );
+      },
+    );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  final ValueNotifier<ThemeMode> themeMode;
-
   const MyHomePage({Key? key, required this.themeMode}) : super(key: key);
+
+  final ValueNotifier<ThemeMode> themeMode;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -61,19 +63,19 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Get Started"),
+        title: const Text('Get Started'),
         actions: [
           DecoratedMinimizeButton(
             type: _currentThemeType,
-            onPressed: () => debugPrint("Minimize Window"),
+            onPressed: () => debugPrint('Minimize Window'),
           ),
           DecoratedMaximizeButton(
             type: _currentThemeType,
-            onPressed: () => debugPrint("Maximize Window"),
+            onPressed: () => debugPrint('Maximize Window'),
           ),
           DecoratedCloseButton(
             type: _currentThemeType,
-            onPressed: () => debugPrint("Close Window"),
+            onPressed: () => debugPrint('Close Window'),
           ),
           const SizedBox(width: 5),
         ],
@@ -87,8 +89,8 @@ class _MyHomePageState extends State<MyHomePage> {
               items: ThemeType.values
                   .map(
                     (e) => DropdownMenuItem<ThemeType>(
-                      child: Text(describeEnum(e)),
                       value: e,
+                      child: Text(describeEnum(e).toCapitalCase()),
                     ),
                   )
                   .toList(),
@@ -99,10 +101,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   .map(
                     (e) => Padding(
                       padding: const EdgeInsets.symmetric(
-                          vertical: 4, horizontal: 10),
+                        vertical: 4,
+                        horizontal: 10,
+                      ),
                       child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(describeEnum(e))),
+                        alignment: Alignment.centerLeft,
+                        child: Text(describeEnum(e).toCapitalCase()),
+                      ),
                     ),
                   )
                   .toList(),
