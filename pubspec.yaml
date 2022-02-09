@@ -14,7 +14,6 @@ dependencies:
     sdk: flutter
   flutter_svg: ">=1.0.0 <2.0.0"
   gsettings: ">=0.2.5 <1.0.0"
-  very_good_performance: ^0.0.4
 
 dev_dependencies:
   flutter_test:
