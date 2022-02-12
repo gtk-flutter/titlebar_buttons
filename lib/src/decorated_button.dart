@@ -6,10 +6,10 @@ import 'package:window_decorations/src/get_theme.dart';
 import 'package:window_decorations/src/theme_type.dart';
 
 Widget windowDecor(String name, dynamic type, void Function()? onPressed) {
-  assert(type is ThemeType, 'type should be a ThemeType');
+  assert(type is ThemeType?, 'type should be a ThemeType');
   return RawDecoratedWindowButton(
     name: name,
-    type: type as ThemeType,
+    type: type as ThemeType?,
     onPressed: onPressed,
   );
 }

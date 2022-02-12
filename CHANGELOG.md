@@ -2,6 +2,10 @@
 
 ## 2.0.0+1
 
+- Fix windowDecor logic
+
+## 2.0.0+1
+
 - Fix support with libadwaita
 - Try to support all platforms
 
