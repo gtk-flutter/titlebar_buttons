@@ -5,12 +5,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:window_decorations/src/get_theme.dart';
 import 'package:window_decorations/src/theme_type.dart';
 
-Widget windowDecor(String name, ThemeType? type, void Function()? onPressed) =>
-    RawDecoratedWindowButton(
-      name: name,
-      type: type,
-      onPressed: onPressed,
-    );
+Widget windowDecor(String name, dynamic type, void Function()? onPressed) {
+  assert(type is ThemeType, 'type should be a ThemeType');
+  return RawDecoratedWindowButton(
+    name: name,
+    type: type as ThemeType,
+    onPressed: onPressed,
+  );
+}
 
 class DecoratedMinimizeButton extends StatelessWidget {
   const DecoratedMinimizeButton({

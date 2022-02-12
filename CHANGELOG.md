@@ -1,3 +1,10 @@
+# Changelog
+
+## 2.0.0+1
+
+- Fix support with libadwaita
+- Try to support all platforms
+
 ## 2.0.0
 
 - Remove old svg's
