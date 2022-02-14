@@ -27,4 +27,4 @@ Similarly you can use ```DecoratedCloseButton``` for close button and ```Decorat
 
 ## LICENSE
 
-`GNU LESSER GENERAL PUBLIC LICENSE`
+`Mozilla Public License 2.0`

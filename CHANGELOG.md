@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.2+1
+
+* Fix README
+
 ## 2.0.2
 
 * Relicense under MPL-2.0
