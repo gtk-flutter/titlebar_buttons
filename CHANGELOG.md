@@ -1,71 +1,75 @@
 # Changelog
 
+## 2.0.2
+
+* Relicense under MPL-2.0
+
 ## 2.0.0+2
 
-- Fix windowDecor logic
+* Fix windowDecor logic
 
 ## 2.0.0+1
 
-- Fix support with libadwaita
-- Try to support all platforms
+* Fix support with libadwaita
+* Try to support all platforms
 
 ## 2.0.0
 
-- Remove old svg's
-- Support all platforms
+* Remove old svg's
+* Support all platforms
 
 ## 1.0.0
 
-- Bump flutter_svg version
-- Update Pop os buttons
+* Bump flutter_svg version
+* Update Pop os buttons
 
 ## 0.9.8
 
-- Bump flutter_svg version
+* Bump flutter_svg version
 
 ## 0.9.5
 
-- Fix when `themeType` is not supplied
+* Fix when `themeType` is not supplied
 
 ## 0.9.2
 
-- Add windowDecor object to simplify usage with `gtk` package
+* Add windowDecor object to simplify usage with `gtk` package
 
 ## 0.9.1
 
-- Made `type` property nullable for buttons
+* Made `type` property nullable for buttons
 
 ## 0.9.0
 
-- Update gsettings
+* Update gsettings
 
 ## 0.5.5
 
-- Update README
-- Update License
+* Update README
+* Update License
 
 ## 0.4.0
 
-- Changed cursor back to normal position
-- Format decorated button file
+* Changed cursor back to normal position
+* Format decorated button file
 
 ## 0.3.0+1
 
-- Dispose Settings after used.
+* Dispose Settings after used.
 
 ## 0.3.0
 
-- Add Theme type auto detect mode.
+* Add Theme type auto detect mode.
 
 ## 0.2.0
 
-- Switch b/w light and dark variants of buttons automatically.
-- Update Documentation
+* Switch b/w light and dark variants of buttons automatically.
+* Update Documentation
 
 ## 0.1.0+1
 
-- Update README
+* Update README
 
 ## 0.1.0
 
-- Init Release
+* Init Release
