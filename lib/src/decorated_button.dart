@@ -2,17 +2,7 @@ import 'package:change_case/change_case.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:window_decorations/src/get_theme.dart';
-import 'package:window_decorations/src/theme_type.dart';
-
-Widget windowDecor(String name, dynamic type, void Function()? onPressed) {
-  assert(type is ThemeType?, 'type should be a ThemeType');
-  return RawDecoratedWindowButton(
-    name: name,
-    type: type as ThemeType?,
-    onPressed: onPressed,
-  );
-}
+import 'package:titlebar_buttons/titlebar_buttons.dart';
 
 class DecoratedMinimizeButton extends StatelessWidget {
   const DecoratedMinimizeButton({
@@ -24,7 +14,7 @@ class DecoratedMinimizeButton extends StatelessWidget {
   }) : super(key: key);
 
   /// Specify the type of theme you want to be
-  /// used for the window decorations
+  /// used for the titlebar buttonss
   final ThemeType? type;
 
   /// Specify a nullable onPressed callback
@@ -39,7 +29,7 @@ class DecoratedMinimizeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RawDecoratedWindowButton(
+    return RawDecoratedTitlebarButton(
       type: type,
       name: 'minimize',
       onPressed: onPressed,
@@ -59,7 +49,7 @@ class DecoratedMaximizeButton extends StatelessWidget {
   }) : super(key: key);
 
   /// Specify the type of theme you want to be
-  /// used for the window decorations
+  /// used for the titlebar buttonss
   final ThemeType? type;
 
   /// Specify a nullable onPressed callback
@@ -74,7 +64,7 @@ class DecoratedMaximizeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RawDecoratedWindowButton(
+    return RawDecoratedTitlebarButton(
       type: type,
       name: 'maximize',
       onPressed: onPressed,
@@ -94,7 +84,7 @@ class DecoratedCloseButton extends StatelessWidget {
   }) : super(key: key);
 
   /// Specify the type of theme you want to be
-  /// used for the window decorations
+  /// used for the titlebar buttonss
   final ThemeType? type;
 
   /// Specify a nullable onPressed callback
@@ -109,7 +99,7 @@ class DecoratedCloseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RawDecoratedWindowButton(
+    return RawDecoratedTitlebarButton(
       type: type,
       name: 'close',
       onPressed: onPressed,
@@ -119,8 +109,8 @@ class DecoratedCloseButton extends StatelessWidget {
   }
 }
 
-class RawDecoratedWindowButton extends StatefulWidget {
-  const RawDecoratedWindowButton({
+class RawDecoratedTitlebarButton extends StatefulWidget {
+  const RawDecoratedTitlebarButton({
     Key? key,
     this.type = ThemeType.auto,
     required this.name,
@@ -130,7 +120,7 @@ class RawDecoratedWindowButton extends StatefulWidget {
   }) : super(key: key);
 
   /// Specify the type of theme you want to be
-  /// used for the window decorations
+  /// used for the titlebar buttonss
   final ThemeType? type;
 
   /// Specify the name of the button that
@@ -148,11 +138,12 @@ class RawDecoratedWindowButton extends StatefulWidget {
   final double? height;
 
   @override
-  State<RawDecoratedWindowButton> createState() =>
-      _RawDecoratedWindowButtonState();
+  State<RawDecoratedTitlebarButton> createState() =>
+      _RawDecoratedTitlebarButtonState();
 }
 
-class _RawDecoratedWindowButtonState extends State<RawDecoratedWindowButton> {
+class _RawDecoratedTitlebarButtonState
+    extends State<RawDecoratedTitlebarButton> {
   bool isHovering = false;
   bool isActive = false;
   late String theme = '';
@@ -193,7 +184,7 @@ class _RawDecoratedWindowButtonState extends State<RawDecoratedWindowButton> {
     final fileName = '${widget.name}$state.svg';
 
     final themePath =
-        'packages/window_decorations/assets/themes/$themeName$themeColor/$fileName';
+        'packages/titlebar_buttons/assets/themes/$themeName$themeColor/$fileName';
 
     void onEntered({required bool hover}) => setState(() {
           isHovering = hover;

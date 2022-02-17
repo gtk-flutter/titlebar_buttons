@@ -1,6 +1,6 @@
-## Window Decorations
+## Titlebar buttons
 
-A package which provides most of the window decorations from linux themes.
+A package which provides most of the titlebar buttons from windows, linux and macos.
 
 ![materia](https://user-images.githubusercontent.com/41370460/130425898-8967115b-ba44-4d9a-8fc6-c63f878074c1.png)  
 ![breeze](https://user-images.githubusercontent.com/41370460/130425904-0ac93a49-578f-4f6b-8dc1-dd64e57edf0b.png)  
@@ -10,7 +10,7 @@ A package which provides most of the window decorations from linux themes.
 
 ## Features
 - Easier to use and implement
-- Native looking window buttons for close, minimize and maximize actions
+- Native looking titlebar buttons for close, minimize and maximize actions
 
 ## Usage
 

@@ -1,4 +1,4 @@
-# Window decoration Example
+# Titlebar buttons Example
 
 ## Getting Started
 

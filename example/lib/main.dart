@@ -1,7 +1,7 @@
 import 'package:change_case/change_case.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:window_decorations/window_decorations.dart';
+import 'package:titlebar_buttons/titlebar_buttons.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       valueListenable: themeMode,
       builder: (_, thMode, __) {
         return MaterialApp(
-          title: 'Window Decoration Demo',
+          title: 'Titlebar Buttons Demo',
           theme: ThemeData(
             primarySwatch: MaterialColor(
               Colors.grey[50]!.value,

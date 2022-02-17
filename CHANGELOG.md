@@ -1,5 +1,12 @@
 # Changelog
 
+# 1.0.0
+
+* Remove `windowDecor` object
+* Rename `RawDecoratedWindowButton` to `RawDecoratedTitlebarButton`
+
+Older CHANGELOG from [`window_decorations`](https://pub.dev/packages/window_decorations)
+
 ## 2.0.2+1
 
 * Fix README
