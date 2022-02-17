@@ -4,6 +4,7 @@
 
 * Remove `windowDecor` object
 * Rename `RawDecoratedWindowButton` to `RawDecoratedTitlebarButton`
+* Add `elementary` titlebar buttons
 
 Older CHANGELOG from [`window_decorations`](https://pub.dev/packages/window_decorations)
 
