@@ -3,6 +3,7 @@ enum ThemeType {
   auto,
   arc,
   breeze,
+  elementary,
   flatRemix,
   materia,
   nordic,

@@ -12,7 +12,6 @@ platforms:
   ios:
   linux:
   macos:
-  web:
   windows:
 
 dependencies:
@@ -34,6 +33,7 @@ flutter:
     - assets/themes/arc-dark/
     - assets/themes/arc-light/
     - assets/themes/breeze/
+    - assets/themes/elementary/
     - assets/themes/flat-remix/
     - assets/themes/materia-dark/
     - assets/themes/materia-light/

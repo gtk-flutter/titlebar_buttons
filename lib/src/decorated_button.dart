@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:change_case/change_case.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -183,17 +184,21 @@ class _RawDecoratedTitlebarButtonState
             : '';
 
     final fileName = '${widget.name}$state.svg';
+    final prefix = 'packages/titlebar_buttons/assets/themes'
+        '/$themeName$themeColor/';
 
-    final themePath =
-        'packages/titlebar_buttons/assets/themes/$themeName$themeColor/$fileName';
+    final themePath = prefix +
+        (File(prefix + fileName).existsSync()
+            ? fileName
+            : '${widget.name}.svg');
 
-    void onEntered({required bool hover}) => setState(() {
-          isHovering = hover;
-        });
+    void onEntered({required bool hover}) => setState(
+          () => isHovering = hover,
+        );
 
-    void onActive({required bool hover}) => setState(() {
-          isActive = hover;
-        });
+    void onActive({required bool hover}) => setState(
+          () => isActive = hover,
+        );
 
     return MouseRegion(
       onExit: (value) => onEntered(hover: false),
@@ -215,6 +220,7 @@ class _RawDecoratedTitlebarButtonState
                         type == ThemeType.yaru &&
                         widget.name != 'close' ||
                     type == ThemeType.breeze ||
+                    type == ThemeType.elementary ||
                     !isHovering && !isActive && type == ThemeType.adwaita)
                 ? Theme.of(context).brightness == Brightness.dark
                     ? Colors.white
