@@ -2,7 +2,8 @@ import 'package:change_case/change_case.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:titlebar_buttons/titlebar_buttons.dart';
+import 'package:titlebar_buttons/src/get_theme.dart';
+import 'package:titlebar_buttons/src/theme_type.dart';
 
 class DecoratedMinimizeButton extends StatelessWidget {
   const DecoratedMinimizeButton({
