@@ -223,7 +223,7 @@ class _RawDecoratedTitlebarButtonState
         onTapUp: (_) => onActive(hover: false),
         onTap: widget.onPressed,
         child: Container(
-          padding: widget.padding ?? const EdgeInsets.all(4),
+          padding: widget.padding ?? const EdgeInsets.all(6),
           constraints: const BoxConstraints(minWidth: 15),
           child: SvgPicture.asset(
             themePath,
