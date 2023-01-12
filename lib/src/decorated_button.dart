@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:change_case/change_case.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -180,9 +179,8 @@ class _RawDecoratedTitlebarButtonState
     final type = widget.type != null && widget.type != ThemeType.auto
         ? widget.type!
         : ThemeType.values.firstWhere(
-            (element) => theme.toParamCase().contains(
-                  describeEnum(element).toParamCase(),
-                ),
+            (element) =>
+                theme.toParamCase() == describeEnum(element).toParamCase(),
             orElse: () => ThemeType.adwaita,
           );
 
@@ -206,10 +204,7 @@ class _RawDecoratedTitlebarButtonState
     final prefix = 'packages/titlebar_buttons/assets/themes'
         '/$themeName$themeColor/';
 
-    final themePath = prefix +
-        (File(prefix + fileName).existsSync()
-            ? fileName
-            : '${widget.name}.svg');
+    final themePath = prefix + fileName;
 
     void onEntered({required bool hover}) => setState(
           () => isHovering = hover,
