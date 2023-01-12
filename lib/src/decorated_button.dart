@@ -13,6 +13,7 @@ class DecoratedMinimizeButton extends StatelessWidget {
     required this.onPressed,
     this.width,
     this.height,
+    this.padding,
   }) : super(key: key);
 
   /// Specify the type of theme you want to be
@@ -29,6 +30,9 @@ class DecoratedMinimizeButton extends StatelessWidget {
   /// Height of the Button
   final double? height;
 
+  /// Padding of the Button
+  final EdgeInsetsGeometry? padding;
+
   @override
   Widget build(BuildContext context) {
     return RawDecoratedTitlebarButton(
@@ -37,6 +41,7 @@ class DecoratedMinimizeButton extends StatelessWidget {
       onPressed: onPressed,
       width: width,
       height: height,
+      padding: padding,
     );
   }
 }
@@ -48,6 +53,7 @@ class DecoratedMaximizeButton extends StatelessWidget {
     required this.onPressed,
     this.width,
     this.height,
+    this.padding,
   }) : super(key: key);
 
   /// Specify the type of theme you want to be
@@ -64,6 +70,9 @@ class DecoratedMaximizeButton extends StatelessWidget {
   /// Height of the Button
   final double? height;
 
+  /// Padding of the Button
+  final EdgeInsetsGeometry? padding;
+
   @override
   Widget build(BuildContext context) {
     return RawDecoratedTitlebarButton(
@@ -72,6 +81,7 @@ class DecoratedMaximizeButton extends StatelessWidget {
       onPressed: onPressed,
       width: width,
       height: height,
+      padding: padding,
     );
   }
 }
@@ -83,6 +93,7 @@ class DecoratedCloseButton extends StatelessWidget {
     required this.onPressed,
     this.width,
     this.height,
+    this.padding,
   }) : super(key: key);
 
   /// Specify the type of theme you want to be
@@ -99,6 +110,9 @@ class DecoratedCloseButton extends StatelessWidget {
   /// Height of the Button
   final double? height;
 
+  /// Padding of the Button
+  final EdgeInsetsGeometry? padding;
+
   @override
   Widget build(BuildContext context) {
     return RawDecoratedTitlebarButton(
@@ -107,6 +121,7 @@ class DecoratedCloseButton extends StatelessWidget {
       onPressed: onPressed,
       width: width,
       height: height,
+      padding: padding,
     );
   }
 }
@@ -119,6 +134,7 @@ class RawDecoratedTitlebarButton extends StatefulWidget {
     required this.onPressed,
     this.width,
     this.height,
+    this.padding,
   }) : super(key: key);
 
   /// Specify the type of theme you want to be
@@ -138,6 +154,9 @@ class RawDecoratedTitlebarButton extends StatefulWidget {
 
   /// Height of the Button
   final double? height;
+
+  /// Padding of the Button
+  final EdgeInsetsGeometry? padding;
 
   @override
   State<RawDecoratedTitlebarButton> createState() =>
@@ -209,7 +228,7 @@ class _RawDecoratedTitlebarButtonState
         onTapUp: (_) => onActive(hover: false),
         onTap: widget.onPressed,
         child: Container(
-          padding: const EdgeInsets.all(4),
+          padding: widget.padding ?? const EdgeInsets.all(4),
           constraints: const BoxConstraints(minWidth: 15),
           child: SvgPicture.asset(
             themePath,
