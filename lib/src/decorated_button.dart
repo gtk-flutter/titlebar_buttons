@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:change_case/change_case.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +12,7 @@ class DecoratedMinimizeButton extends StatelessWidget {
     required this.onPressed,
     this.width,
     this.height,
+    this.padding,
   }) : super(key: key);
 
   /// Specify the type of theme you want to be
@@ -29,6 +29,9 @@ class DecoratedMinimizeButton extends StatelessWidget {
   /// Height of the Button
   final double? height;
 
+  /// Padding of the Button
+  final EdgeInsetsGeometry? padding;
+
   @override
   Widget build(BuildContext context) {
     return RawDecoratedTitlebarButton(
@@ -37,6 +40,7 @@ class DecoratedMinimizeButton extends StatelessWidget {
       onPressed: onPressed,
       width: width,
       height: height,
+      padding: padding,
     );
   }
 }
@@ -48,6 +52,7 @@ class DecoratedMaximizeButton extends StatelessWidget {
     required this.onPressed,
     this.width,
     this.height,
+    this.padding,
   }) : super(key: key);
 
   /// Specify the type of theme you want to be
@@ -64,6 +69,9 @@ class DecoratedMaximizeButton extends StatelessWidget {
   /// Height of the Button
   final double? height;
 
+  /// Padding of the Button
+  final EdgeInsetsGeometry? padding;
+
   @override
   Widget build(BuildContext context) {
     return RawDecoratedTitlebarButton(
@@ -72,6 +80,7 @@ class DecoratedMaximizeButton extends StatelessWidget {
       onPressed: onPressed,
       width: width,
       height: height,
+      padding: padding,
     );
   }
 }
@@ -83,6 +92,7 @@ class DecoratedCloseButton extends StatelessWidget {
     required this.onPressed,
     this.width,
     this.height,
+    this.padding,
   }) : super(key: key);
 
   /// Specify the type of theme you want to be
@@ -99,6 +109,9 @@ class DecoratedCloseButton extends StatelessWidget {
   /// Height of the Button
   final double? height;
 
+  /// Padding of the Button
+  final EdgeInsetsGeometry? padding;
+
   @override
   Widget build(BuildContext context) {
     return RawDecoratedTitlebarButton(
@@ -107,6 +120,7 @@ class DecoratedCloseButton extends StatelessWidget {
       onPressed: onPressed,
       width: width,
       height: height,
+      padding: padding,
     );
   }
 }
@@ -119,6 +133,7 @@ class RawDecoratedTitlebarButton extends StatefulWidget {
     required this.onPressed,
     this.width,
     this.height,
+    this.padding,
   }) : super(key: key);
 
   /// Specify the type of theme you want to be
@@ -138,6 +153,9 @@ class RawDecoratedTitlebarButton extends StatefulWidget {
 
   /// Height of the Button
   final double? height;
+
+  /// Padding of the Button
+  final EdgeInsetsGeometry? padding;
 
   @override
   State<RawDecoratedTitlebarButton> createState() =>
@@ -161,9 +179,8 @@ class _RawDecoratedTitlebarButtonState
     final type = widget.type != null && widget.type != ThemeType.auto
         ? widget.type!
         : ThemeType.values.firstWhere(
-            (element) => theme.toParamCase().contains(
-                  describeEnum(element).toParamCase(),
-                ),
+            (element) =>
+                theme.toParamCase() == describeEnum(element).toParamCase(),
             orElse: () => ThemeType.adwaita,
           );
 
@@ -187,10 +204,7 @@ class _RawDecoratedTitlebarButtonState
     final prefix = 'packages/titlebar_buttons/assets/themes'
         '/$themeName$themeColor/';
 
-    final themePath = prefix +
-        (File(prefix + fileName).existsSync()
-            ? fileName
-            : '${widget.name}.svg');
+    final themePath = prefix + fileName;
 
     void onEntered({required bool hover}) => setState(
           () => isHovering = hover,
@@ -209,7 +223,7 @@ class _RawDecoratedTitlebarButtonState
         onTapUp: (_) => onActive(hover: false),
         onTap: widget.onPressed,
         child: Container(
-          padding: const EdgeInsets.all(4),
+          padding: widget.padding ?? const EdgeInsets.all(6),
           constraints: const BoxConstraints(minWidth: 15),
           child: SvgPicture.asset(
             themePath,
