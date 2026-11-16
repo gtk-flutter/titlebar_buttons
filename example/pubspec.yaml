@@ -6,18 +6,20 @@ publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=3.13.0 <4.0.0"
 
 dependencies:
+  change_case: ^2.2.0
   flutter:
     sdk: flutter
+  material_ui: ^1.11.0
   titlebar_buttons:
     path: ../
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: ">=2.4.0 <3.0.0"
+  very_good_analysis: ^11.0.0
 
 flutter:
   uses-material-design: true
