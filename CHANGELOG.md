@@ -1,5 +1,11 @@
 # Changelog
 
+# 2.0.0
+
+* Require Dart SDK `>=3.13.0 <4.0.0` and Flutter `>=3.47.0`
+* Add `material_ui` dependency; migrate from deprecated `package:flutter/material.dart`
+* Resolve analyzer deprecations (`enum.name`, `Color.toARGB32`)
+
 # 1.0.0
 
 * Remove `windowDecor` object

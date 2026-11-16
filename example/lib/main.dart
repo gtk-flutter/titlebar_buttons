@@ -1,6 +1,5 @@
 import 'package:change_case/change_case.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:titlebar_buttons/titlebar_buttons.dart';
 
 void main() {
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
           title: 'Titlebar Buttons Demo',
           theme: ThemeData(
             primarySwatch: MaterialColor(
-              Colors.grey[50]!.value,
+              Colors.grey[50]!.toARGB32(),
               <int, Color>{
                 50: Colors.grey[50]!,
                 100: Colors.grey[50]!,
@@ -90,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   .map(
                     (e) => DropdownMenuItem<ThemeType>(
                       value: e,
-                      child: Text(describeEnum(e).toCapitalCase()),
+                      child: Text(e.name.toCapitalCase()),
                     ),
                   )
                   .toList(),
@@ -106,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text(describeEnum(e).toCapitalCase()),
+                        child: Text(e.name.toCapitalCase()),
                       ),
                     ),
                   )

@@ -1,8 +1,7 @@
 import 'dart:io';
 import 'package:change_case/change_case.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:titlebar_buttons/src/get_theme.dart';
 import 'package:titlebar_buttons/src/theme_type.dart';
 
@@ -162,12 +161,12 @@ class _RawDecoratedTitlebarButtonState
         ? widget.type!
         : ThemeType.values.firstWhere(
             (element) => theme.toParamCase().contains(
-                  describeEnum(element).toParamCase(),
+                  element.name.toParamCase(),
                 ),
             orElse: () => ThemeType.adwaita,
           );
 
-    final themeName = describeEnum(type).toParamCase();
+    final themeName = type.name.toParamCase();
     final themeColor = type == ThemeType.pop ||
             type == ThemeType.arc ||
             type == ThemeType.materia ||
