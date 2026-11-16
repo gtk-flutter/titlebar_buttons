@@ -15,18 +15,18 @@ platforms:
   windows:
 
 dependencies:
-  change_case: ">=1.0.1 < 2.0.0"
-  dbus: ">=0.7.1 <1.0.0"
+  change_case: ^2.2.0
+  dbus: ^0.8.0
   flutter:
     sdk: flutter
-  flutter_svg: ">=1.0.0 <2.0.0"
-  gsettings: ">=0.2.5 <1.0.0"
+  flutter_svg: ^2.4.0
+  gsettings: ^0.2.5
   material_ui: ^1.11.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: ">=2.4.0 <3.0.0"
+  very_good_analysis: ^11.0.0
 
 flutter:
   assets:

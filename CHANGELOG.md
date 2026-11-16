@@ -3,6 +3,8 @@
 # 2.0.0
 
 * Require Dart SDK `>=3.13.0 <4.0.0` and Flutter `>=3.47.0`
+* Bump `very_good_analysis` to ^11.0.0
+* Bump `flutter_svg` to ^2.4.0 (`colorFilter` API)
 * Add `material_ui` dependency; migrate from deprecated `package:flutter/material.dart`
 * Resolve analyzer deprecations (`enum.name`, `Color.toARGB32`)
 

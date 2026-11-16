@@ -7,14 +7,14 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
     final themeMode = ValueNotifier<ThemeMode>(ThemeMode.system);
     return ValueListenableBuilder<ThemeMode>(
       valueListenable: themeMode,
-      builder: (_, thMode, __) {
+      builder: (_, thMode, _) {
         return MaterialApp(
           title: 'Titlebar Buttons Demo',
           theme: ThemeData(
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.themeMode}) : super(key: key);
+  const new({super.key, required this.themeMode});
 
   final ValueNotifier<ThemeMode> themeMode;
 

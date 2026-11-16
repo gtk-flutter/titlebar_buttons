@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:change_case/change_case.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,13 +7,13 @@ import 'package:titlebar_buttons/src/get_theme.dart';
 import 'package:titlebar_buttons/src/theme_type.dart';
 
 class DecoratedMinimizeButton extends StatelessWidget {
-  const DecoratedMinimizeButton({
-    Key? key,
-    this.type = ThemeType.auto,
+  const new({
+    super.key,
     required this.onPressed,
+    this.type = ThemeType.auto,
     this.width,
     this.height,
-  }) : super(key: key);
+  });
 
   /// Specify the type of theme you want to be
   /// used for the titlebar buttonss
@@ -41,13 +42,13 @@ class DecoratedMinimizeButton extends StatelessWidget {
 }
 
 class DecoratedMaximizeButton extends StatelessWidget {
-  const DecoratedMaximizeButton({
-    Key? key,
-    this.type = ThemeType.auto,
+  const new({
+    super.key,
     required this.onPressed,
+    this.type = ThemeType.auto,
     this.width,
     this.height,
-  }) : super(key: key);
+  });
 
   /// Specify the type of theme you want to be
   /// used for the titlebar buttonss
@@ -76,13 +77,13 @@ class DecoratedMaximizeButton extends StatelessWidget {
 }
 
 class DecoratedCloseButton extends StatelessWidget {
-  const DecoratedCloseButton({
-    Key? key,
-    this.type = ThemeType.auto,
+  const new({
+    super.key,
     required this.onPressed,
+    this.type = ThemeType.auto,
     this.width,
     this.height,
-  }) : super(key: key);
+  });
 
   /// Specify the type of theme you want to be
   /// used for the titlebar buttonss
@@ -111,14 +112,14 @@ class DecoratedCloseButton extends StatelessWidget {
 }
 
 class RawDecoratedTitlebarButton extends StatefulWidget {
-  const RawDecoratedTitlebarButton({
-    Key? key,
-    this.type = ThemeType.auto,
+  const new({
+    super.key,
     required this.name,
     required this.onPressed,
+    this.type = ThemeType.auto,
     this.width,
     this.height,
-  }) : super(key: key);
+  });
 
   /// Specify the type of theme you want to be
   /// used for the titlebar buttonss
@@ -152,7 +153,7 @@ class _RawDecoratedTitlebarButtonState
   @override
   void initState() {
     super.initState();
-    getTheme().then((value) => setState(() => theme = value));
+    unawaited(getTheme().then((value) => setState(() => theme = value)));
   }
 
   @override
@@ -199,6 +200,16 @@ class _RawDecoratedTitlebarButtonState
           () => isActive = hover,
         );
 
+    final tintColor = type.shouldTintSvgFromBrightness(
+      isHovering: isHovering,
+      isActive: isActive,
+      buttonName: widget.name,
+    )
+        ? Theme.of(context).brightness == Brightness.dark
+            ? Colors.white
+            : Colors.black
+        : null;
+
     return MouseRegion(
       onExit: (value) => onEntered(hover: false),
       onHover: (value) => onEntered(hover: true),
@@ -214,16 +225,8 @@ class _RawDecoratedTitlebarButtonState
             themePath,
             width: widget.width,
             height: widget.height,
-            color: (!isHovering &&
-                        !isActive &&
-                        type == ThemeType.yaru &&
-                        widget.name != 'close' ||
-                    type == ThemeType.breeze ||
-                    type == ThemeType.elementary ||
-                    !isHovering && !isActive && type == ThemeType.adwaita)
-                ? Theme.of(context).brightness == Brightness.dark
-                    ? Colors.white
-                    : Colors.black
+            colorFilter: tintColor != null
+                ? ColorFilter.mode(tintColor, BlendMode.srcIn)
                 : null,
           ),
         ),
